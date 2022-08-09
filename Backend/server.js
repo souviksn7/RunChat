@@ -2,8 +2,10 @@ const express = require("express");
 const dotenv = require("dotenv");
 const app = express();
 const { chats } = require("./data/data.js");
+const connectDB = require("./config/db.js");
 
 dotenv.config();
+connectDB();
 
 app.get("/", (req, res) => {
   res.send("server started on port 5000 successfully");
