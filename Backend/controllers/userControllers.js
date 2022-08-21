@@ -56,4 +56,19 @@ const authUser = asyncHandler(async (req, res) => {
     throw new Error("User not found");
   }
 });
-module.exports = { registerUser, authUser };
+
+// /api/user?search=souvik
+const allUsers = asyncHandler(async (req, res) => {
+  const keyword = req.query.search
+    ? {
+        $or: [
+          { name: { $regex: req.query.search, $options: "i" } }, //redex =  mongodb part
+          { email: { $regex: req.query.search, $options: "i" } },
+        ],
+      }
+    : {};
+
+  const users = await User.find(keyword).find({ _id: { $ne: req.user._id } }); //ne = not equals
+  res.send(users);
+});
+module.exports = { registerUser, authUser, allUsers };
