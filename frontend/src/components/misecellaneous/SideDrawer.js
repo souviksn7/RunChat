@@ -31,6 +31,7 @@ import { Effect } from "react-notification-badge";
 import { getSender } from "../../config/ChatLogics";
 import UserListItem from "../UserAvatar/UserListItem";
 import { ChatState } from "../../Context/ChatProvider";
+import { Flex, Spacer } from "@chakra-ui/react";
 
 function SideDrawer() {
   const [search, setSearch] = useState("");
@@ -124,8 +125,7 @@ function SideDrawer() {
 
   return (
     <>
-      <Box
-        d="flex"
+      <Flex
         justifyContent="space-between"
         alignItems="center"
         bg="white"
@@ -142,7 +142,7 @@ function SideDrawer() {
           </Button>
         </Tooltip>
         <Text fontSize="2xl" fontFamily="Work sans">
-          Talk-A-Tive
+          RunChat
         </Text>
         <div>
           <Menu>
@@ -188,7 +188,7 @@ function SideDrawer() {
             </MenuList>
           </Menu>
         </div>
-      </Box>
+      </Flex>
 
       <Drawer placement="left" onClose={onClose} isOpen={isOpen}>
         <DrawerOverlay />
